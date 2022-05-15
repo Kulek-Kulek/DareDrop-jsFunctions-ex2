@@ -1,5 +1,45 @@
 // 1. Please write a function that shows the usage of closures
 
+// Suppose you want to check if a user is old enough to buy a product, e.g. alcohol.
+
+const checkUserAge = (user = { name: '', age: null }) => {
+
+    let userToBeChecked = user;
+
+    const display = () => {
+        console.log(`Hello ${userToBeChecked.name}, ${userToBeChecked.age >= 18 ? 'good news - you are allowed to but this product.' : "I am sorry - you aren't old enough to buy this product!"}`);
+    };
+
+    return display;
+}
+
+const tomek = checkUserAge({ name: 'Tomek', age: 22 });
+tomek();
+
+const ola = checkUserAge({ name: 'Ola', age: 17 });
+// ola();
+
+const unknownUser = checkUserAge();
+// unknownUser();
+
+
+// Example 2
+// Suppose you want to check how long a user remains on our website
+
+const time = () => {
+    let seconds = 0;
+
+    return () => {
+        seconds++;
+        console.log(`Time spent on this website ${seconds} ${seconds === 1 ? 'second' : 'seconds'}.`);
+    }
+}
+
+const startCounting = time();
+
+setInterval(startCounting, 1000);
+
+
 // 2. Please write a function that returns a sum of array items
 // example input [9, 1, 22, 0, 2]
 // example output 34
@@ -8,21 +48,22 @@ const input = [9, 1, 22, 0, 2];
 
 // Version A
 
-// const sumItUp = input.reduce((prev, curr) => {
-//     return prev + curr;
-// }, 0);
+const sumItUp = input.reduce((prev, curr) => {
+    return prev + curr;
+}, 0);
+
 // console.log(sumItUp);
 
 // Version B
 
-// const sumItUp = array => {
-//     const total = array.reduce((prev, curr) => {
-//         return prev + curr;
-//     }, 0);
-//     return total;
-// }
+const sumItUp2 = array => {
+    const total = array.reduce((prev, curr) => {
+        return prev + curr;
+    }, 0);
+    return total;
+}
 
-// console.log(sumItUp(input));
+// console.log(sumItUp2(input));
 
 // 3. Please write a recursive function that flattens a list of items
 // example input [[2, [4, [44,5,6]]], [4,5,6], [[2,4], 4], 5]]
@@ -142,13 +183,14 @@ const compareObjectsEquqlity = function (obj1, obj2) {
 }
 
 // console.log(compareObjectsEquqlity({ a: 'b', c: 'd' }, { c: 'd', a: 'b' }));
+// console.log(compareObjectsEquqlity({ a: 'c', c: 'a' }, { c: 'd', a: 'b', q: 's' }));
 
 
 // 9. Please write a function which takes a list of keys and an object, then returns this object, just without keys from the list
 // example input ['color', 'size'], { color: 'Blue', id: '22', size: 'xl' }
 // example output { id: '22' }
 const sampleArr = ['color', 'size'];
-const sampleObj = { color: 'Blue', id: '22', size: 'xl', t: 11 };
+const sampleObj = { color: 'Blue', id: '22', size: 'xl' };
 
 
 const getDataFromObject = (arr, obj) => {
