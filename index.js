@@ -14,7 +14,7 @@ const checkUserAge = (user = { name: '', age: null }) => {
 }
 
 const tomek = checkUserAge({ name: 'Tomek', age: 22 });
-tomek();
+// tomek();
 
 const ola = checkUserAge({ name: 'Ola', age: 17 });
 // ola();
